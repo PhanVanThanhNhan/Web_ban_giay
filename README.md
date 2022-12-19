@@ -9,7 +9,7 @@
 * Jquery, Bootstrap 4,
 2. Back-End:<br> 
 * Java<br>
-* SQL Servlet<br><br>
+* SQL Server<br><br>
 3. Môi trường(App):<br>
 * Eclipse, JSPServlet
 
