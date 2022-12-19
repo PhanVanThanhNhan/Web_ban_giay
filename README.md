@@ -1,6 +1,6 @@
 # Web_ban_giay
 ## Loại dự án: Dự án cá nhân 
-###Ngôn ngữ sử dụng:
+### Ngôn ngữ sử dụng:
 1. Front-End: <br>
 * HTML,CSS,JavaScript<br>
 * Jquery, Bootstrap 4,
