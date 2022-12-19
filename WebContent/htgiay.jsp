@@ -18,18 +18,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link type="image/png" sizes="16x16" rel="icon"
 	href="image_sach/icons8-book-16.png">
-<title>Trang chủ</title>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
+<title>Cửa hàng bán giày</title>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
 	integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<script src="https://kit.fontawesome.com/yourcode.js"
-	crossorigin="anonymous"></script>
-
 <link rel="stylesheet" href="style.css">
 <style>
 * {
@@ -44,56 +37,64 @@ html {
 
 body {
 	width: 100%;
-	background-color: #fff;
+	background-color: #f5f5f5;
 }
 
-.log {
-	color: rgb(220, 220, 220);
+.pagination-container {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background-color: #fff;
+	z-index: 30;
+}
+
+.pagination {
 	display: flex;
+	justify-content: center;
+}
+
+.pagination a {
+	color: black;
+	float: left;
+	padding: 4px 18px;
+	text-decoration: none;
+	margin: 0;
+}
+
+.pagination a.active {
+	background-color: #4CAF50;
+	color: white;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+}
+
+.pagination li {
+	margin: 0;
 }
 
 .header {
-	display: flex;
 	width: 100%;
-	height: 80px;
-	background-color: rgba(0, 0, 0, 0.9);;
+	height: 50px;
+	background-color: #fff;
+	box-shadow: 0px 1px #e7e7e7;
 	position: fixed;
 	z-index: 30;
 	top: 0;
-	color: #fff;
-	width: 100%;
-}
-
-.left {
-	float: left;
-}
-
-.right {
-	float: right;
 }
 
 .header_ctn {
 	display: flex;
+	margin-left: 105px;
 	height: 100%;
 }
 
-.list-items {
-	margin: 10px auto;
-	text-align: center;
-	list-style-type: none;
-	text-decoration: none;
-}
-
 .navlist {
-	text-align: center;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-}
-
-.img {
-	max-width: 200px;
-	max-height: 200px;
 }
 
 li {
@@ -102,93 +103,20 @@ li {
 	margin: 10px;
 }
 
-.content {
-	display: flex;
-}
-
-.cate_container {
-	width: 20%;
-	margin: 80px 2%;
-	min-height: 172vh;
-	text-align: center;
-}
-
-.main_content {
-	width: 80%;
-	margin: 60px auto;
-	display: flex;
-}
-
-a:hover {
-	text-decoration: none;
-}
-
-.search-icon:hover .form_search {
-	display: flex;
-	z-index: 30;
-}
-
-.search-icon {
-	margin: 3em 0px 2em 10em;
-	cursor: pointer;
-}
-
-.search-icon:hover {
-	color: #337ab7;
-}
-
-.search-icon-drop {
-	border: none;
-	background-color: red;
-	color: #fff;
-	margin: 0 2px;
-	padding: 1px 5px;
-}
-
-.input-form {
-	padding: 2px 0;
-}
-
-.form_search {
-	font-family: sans-serif;
-	top: 3em;
-	right: 20em;
-	position: absolute;
-	padding: 14px 3px;
-	background-color: rgb(251, 251, 251);
-	border: 1px solid #000;
-	border-radius: 6px;
-	display: none;
-}
-
-.list {
-	display: flex;
-	flex-wrap: wrap;
-}
-
 .list_nav {
 	text-transform: uppercase;
+	color: #252525;
 	text-decoration: none;
 	font-weight: 700;
 	transition: .35s;
-	color: #fff;
 }
 
 .list_nav:hover {
-	color: #337ab7;
-}
-
-.cate-container>li {
-	box-shadow: 10px 10px 15px rgb(0 0 0/ 5%);
-}
-
-.giay-name {
-	height: 99px;
-	padding: 2px;
+	color: #55ad39;
 }
 
 .active {
-	color: #337ab7;
+	color: #55ad39;
 }
 
 li.list_book.ls {
@@ -204,208 +132,346 @@ li.list_book.ls {
 	display: block;
 }
 
-.ctn {
+.ls:hover {
+	background-color: #e7e7e7;
+	border-left: 2px solid #55ad39;
+}
+
+.log {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	position: absolute;
+	right: 8.5%;
+}
+
+.login {
+	text-align: right;
+}
+
+.container {
+	width: 80%;
+	margin: 60px 10%;
+	min-height: 172vh;
+}
+
+.nav_cate {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.category {
+	width: 220px;
+	height: 100%;
+	margin-right: 30px;
+}
+
+.cate_ctn {
+	width: 100%;
+	background-color: #fff;
+}
+
+.cate_all {
+	height: 50px;
+	background-color: #55ad39;
+	font-weight: 700;
+	color: #fff;
+	text-align: center;
+	font-size: 20px;
+	line-height: 2.5;
+	font-family: Tahoma, sans-serif;
+	user-select: none;
+}
+
+.cate_all>i {
+	margin-right: 6px;
+}
+
+.list_cate {
+	box-shadow: 1px 1px #e7e7e7;
+}
+
+.list_book {
+	margin: 10px 0 4px 25px;
+	font-size: 15px;
+	font-family: Tahoma, sans-serif;
+}
+
+.sach_ctn {
+	width: calc(100% - 250px);;
+}
+
+.boxsearch {
+	width: 100%;
+	height: 50px;
+	display: flex;
+	margin: 0 5px;
+}
+
+.form_search {
+	height: 50px;
 	position: relative;
-	max-width: 200px;
-	background: white;
-	box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.05);
-	margin: 20px;
-	padding-top: 0.7em;
-	padding-bottom: 1.4em;
+}
+
+.form_search>button {
+	background-color: #55ad39;
+	color: #fff;
+	font-size: 18px;
+	font-weight: 700;
+	border: none;
+	width: 150px;
+	height: 100%;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	cursor: pointer;
+}
+
+.form_search input[type=text] {
+	width: 100%;
+	height: 100%;
+	border: 1px solid #cecece;
+	padding: 12px 20px;
+	transition: .35s;
+	outline: none;
+}
+
+.form_search input[type=text]:focus {
+	border: 1px solid #55ad39;
+}
+
+.contact {
+	background-color: #55ad39;
+	color: #fff;
+	font-size: 18px;
+	font-weight: 700;
+	border: none;
+	width: 180px;
+	height: 50px;
+	cursor: pointer;
+	margin-left: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.htsach {
+	margin-top: 10px;
+	width: 100%;
+	background-color: transparent;
+	height: 100vh;
+}
+
+.ds_sach {
+	display: flex;
+	flex-wrap: wrap;
+	flex: 0 0 50%;
+}
+
+.sach {
+	width: 180px;
+	height: 300px;
+	background-color: #fff;
+	margin: 5px;
+	box-shadow: 1px 1px #e7e7e7;
+	text-align: center;
+	transition: .35s;
+}
+
+.sach:hover {
+	margin-top: -8px;
+	cursor: pointer;
+	box-shadow: 0px 0px 0px 1px #55ad39;
+}
+
+.img-sach {
+	width: 100%;
+	height: 180px;
+}
+
+.book_name {
+	color: #55ad39;
+	font-weight: 700;
+	width: 100%;
+	height: 20%;
+	padding: 0 6px;
+}
+
+.soluong {
+	font-size: 8px;
+}
+
+.mua {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	height: 40px;
 }
 
 a {
 	text-decoration: none;
-}
-
-.ctn:hover .buy-btn {
-	display: inline-block;
-}
-
-.buy-btn {
-	transform: scale(1);
-	-webkit-transition: .3s ease;
-	transition: .3s ease;
-	cursor: pointer;
-	display: none;
-	top: 5.5em;
-	left: 2.2em;
-	position: absolute;
-	border-radius: 5px;
-	/* width: 100px; */
-	text-align: center;
-	align-items: center;
-	background-color: red;
+	margin: 0 10px;
 	color: #fff;
-	transition: .3s ease;
+	line-height: 2.2;
 }
 
-.ctn .img .giay-img {
-	display: block;
-	width: 200px;
-	height: 100%;
+.btn_mua {
+	font-weight: 600;
+	background-color: #55ad39;
+	height: 90%;
+	border-radius: 4px;
 }
 
-.price {
-	color: #c30005;
+h5 {
+	color: orangered;
+	font-size: 14px;
 }
 
-footer .footer-title {
-	display: flex;
-	color: red;
-}
-
-footer .footer-title .footer-intro {
-	margin-left: 22em;
-	margin-right: 34em;
-	border-bottom: 2px solid red;
-}
-
-footer .footer-title .footer-social {
-	margin-right: 32em;
-	border-bottom: 2px solid red;
-}
-
-.footer {
-	background-color: rgb(23, 23, 23);
-	color: #fff;
-	align-items: center;
-	text-align: center;
-}
-
-.footer-content {
-	display: flex;
-	text-align: center;
-	align-items: center;
-	justify-content: space-between;
-	padding-top: 2em;
-}
-
-footer .footer-content .intro {
-	max-width: 20%;
-	margin-left: 15em;
-}
-
-footer .footer-content .social {
-	display: block;
-	margin-right: 30em;
-}
-
-footer .footer-content .social .social-icon {
-	margin-right: 5px;
-}
-
-footer .license {
-	font-family: sans-serif;
-	padding: 2em 0;
-}
-
-/* ********************MODAL  LOGIN**************************** */
-.Loginbtn {
-	background-color: #337ab7 !important;
-	width: 7.5em;
-	border-radius: 6px;
-	border: none;
-	padding: 0.1em 0;
-	margin-bottom: 0.5em;
-	border-color: rgba(0, 0, 0, 0.05);
-	height: 2.5em;
-}
-
-.to-signup-btn {
-	background-color: none;
-}
-
-p:hover {
-	text-decoration: underline;
-}
-
-.model {
-	font-family: "Roboto", sans-serif;
+.center {
 	position: fixed;
+	width: 100%;
+	height: 100%;
 	top: 0;
-	left: 0;
 	right: 0;
+	left: 0;
 	bottom: 0;
-	background: rgba(189, 173, 172, 0.4);
+	background-color: rgba(0, 0, 0, 0.4);
 	display: none;
-	align-items: center;
 	justify-content: center;
+	align-items: center;
+	z-index: 1000;
 }
 
-.model.open {
+.open {
 	display: flex;
 }
 
-.model-container {
-	background: #fff;
-	width: 29em;
-	text-align: center;
-	height: 22em;
-	max-width: calc(100% - 32px);
-	position: relative;
-	border-radius: 5px;
+.ctn {
+	width: 380px;
+	background: white;
+	box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.05);
 	animation: modelFadeIn ease 0.4s;
 }
 
-.model .model-container h1 {
-	margin-top: 0.5em;
+.ctn h1 {
+	text-align: center;
+	padding: 20px 0;
+	border-bottom: 1px solid silver;
 }
 
-.model-header {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 100px;
+.ctn form {
+	padding: 0 40px;
+	box-sizing: border-box;
 }
 
-.model .model-container .inp {
-	width: 17em;
-	margin: 1em 0;
-	height: 2.5em;
-	border: 2px solid #ddd;
+.ctn form .txt_field {
 	position: relative;
+	border-bottom: 2px solid #adadad;
+	margin: 30px 30px 30px 0;
 }
 
-.model-header h1 {
-	color: white;
-}
-
-.model-close i {
-	color: white;
-	top: 0;
-	right: 0px;
-	padding: 10px;
-	position: absolute;
-	cursor: pointer;
-	opacity: 0.9;
-}
-
-.model-label {
-	color: white;
-	display: block;
-	font-size: 15px;
-	margin: 5px 0px;
-}
-
-.show-pass-icon {
-	position: absolute;
-	z-index: 2;
-	top: 11em;
-	right: 6.5em;
-	cursor: pointer;
-}
-
-.model-btn {
-	display: block;
-	width: 100%;
-	color: #fff;
-	font-size: 15px;
-	padding: 8px 0px;
-	background-color: #059669;
+.ctn .txt_field input {
+	width: 70%;
+	padding: 0 5px;
+	height: 40px;
+	font-size: 16px;
 	border: none;
-	border-radius: 5px;
-	margin: 50px 0 10px 0;
+	background: none;
+	outline: none;
+}
+
+.ctn .txt_field label {
+	position: absolute;
+	top: 50%;
+	left: 5px;
+	color: #adadad;
+	transform: translateY(-50%);
+	font-size: 16px;
+	pointer-events: none;
+	transition: .5s;
+}
+
+.ctn .txt_field span::before {
+	content: '';
+	position: absolute;
+	top: 40px;
+	left: 0;
+	width: 0%;
+	height: 2px;
+	background: #55ad39;
+	transition: .5s;
+}
+
+.ctn .txt_field input:focus ~ label, .txt_field input:valid ~ label {
+	top: -4px;
+	color: #55ad39;
+}
+
+.ctn .txt_field input:focus ~ span::before, .txt_field input:valid ~
+	span::before {
+	width: 100%;
+}
+
+.ctn .pass {
+	margin: -5px 0 20px 5px;
+	color: #a6a6a6;
+	cursor: pointer;
+}
+
+.ctn .pass:hover {
+	text-decoration: underline;
+}
+
+.ctn input[type="submit"] {
+	width: 100%;
+	height: 50px;
+	border: 1px solid;
+	background: #55ad39;
+	border-radius: 25px;
+	font-size: 18px;
+	color: #e9f4fb;
+	font-weight: 700;
+	cursor: pointer;
+	outline: none;
+}
+
+.ctn input[type="submit"]:hover {
+	border-color: #55ad39;
+	transform: scale(1.1);
+	transition: .5s;
+}
+
+.signup_link, .login_link {
+	margin: 30px 0;
+	text-align: center;
+	font-size: 16px;
+	color: #666666;
+}
+
+.signup_link a, .login_link a {
+	color: #2691d9;
+	text-decoration: none;
+}
+
+.signup_link a:hover, . login_link a:hover {
+	text-decoration: underline;
+}
+
+button.btn_login, button.btn_signin {
+	background-color: transparent;
+	border: none;
+	text-transform: uppercase;
+	font-weight: 600;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+button.btn_login:hover, button.btn_signin:hover {
+	color: #55ad39;
+	font-weight: 700;
+	transition: .35s;
 }
 
 @keyframes modelFadeIn {from { opacity:0;
@@ -417,319 +483,297 @@ to {
 	transform: translateY(0);
 }
 
-}
-/* MODAL SIGN UP */
-.model-signup {
-	font-family: "Roboto", sans-serif;
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background: rgba(189, 173, 172, 0.4);
-	display: none;
-	align-items: center;
-	justify-content: center;
-}
-.show-pass-icon-signup{
-	position: absolute;
-	z-index: 2;
-	top: 15.5em;
-	right: 5em;
-	cursor: pointer;
-}
-.model-signup.open {
-	display: flex;
+to {
+	opacity: 1;
+	transform: translateY(0);
 }
 
-.model-container-signup {
-	background: #fff;
-	width: 26em;
-	text-align: center;
-	height: 36em;
-	max-width: calc(100% - 32px);
-	position: relative;
-	border-radius: 5px;
-	animation: modelFadeIn ease 0.4s;
+to {
+	opacity: 1;
+	transform: translateY(0);
 }
 
-.model-signup .model-container-signup h1 {
-	margin-top: 0.5em;
+to {
+	opacity: 1;
+	transform: translateY(0);
 }
 
-.model-header-signup {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 100px;
+to {
+	opacity: 1;
+	transform: translateY(0);
 }
 
-.model-signup .model-container-signup .inp {
-	width: 17em;
-	margin: 1em 0;
-	height: 2.5em;
-	border: 2px solid #ddd;
-	position: relative;
+to {
+	opacity: 1;
+	transform: translateY(0);
+}
 }
 </style>
 </head>
 <body>
-
-	<!----------------------------- HEADER ----------------------------->
+	<input type="text" id="status" value="${status}">
+	<!----------------- HEADER BAR ----------------->
 	<div class="header">
 		<div class="header_ctn">
 			<ul class="navlist">
-				<c:if test="${DangNhap==null }">
-					<li><a class="list_nav log js-login" style="margin-left: 50px"
-						href="#">ĐĂNG NHẬP</a></li> /
-				<li><a class="list_nav log js-signup" href="#">ĐĂNG KÝ</a></li>
-				</c:if>
+				<li><a class="list_nav active" href="htgiayController">Trang
+						chủ</a></li>
+				<li><a class="list_nav" href="htgioController">Giỏ hàng</a></li>
+				<!-- 
+                <li><a class="list_nav" href="">Thanh toán</a></li> -->
+				<li><a class="list_nav" href="lichsucontroller?mkh=${makh }">Lịch
+						sử mua hàng</a></li>
 
+
+				<c:if test="${DangNhap==null }">
+					<div class="log">
+						<li class="login"><button class="btn_login">Đăng
+								nhập</button></li>
+
+						<li class="signin"><button class="btn_signin">Đăng
+								ký</button></li>
+					</div>
+				</c:if>
 				<c:if test="${DangNhap != null }">
 
 					<div class="log">
 						<li class="login" style="cursor: pointer;"><a
-							style="color: #fff; user-select: none; cursor: default;">Xin
+							style="color: #000; user-select: none; cursor: default;">Xin
 								chào, <c:out value="${DangNhap}" />!
 						</a></li>
-						<li class="signin"><a href="logoutController"
-							class="list_nav">Đăng xuất</a></li>
+						<li class="signin"><a href="logout" class="list_nav">Đăng
+								xuất</a></li>
 					</div>
 				</c:if>
-				<li><a class="list_nav active" style="margin-left: 15em;"
-					href="htgiayController">Trang chủ</a></li>
-
-				<li><a class="list_nav " style="margin: 2em"
-					href="lichsucontroller?mkh=${makh }">Lịch sử mua hàng</a></li>
-
-				<li><a class="list_nav " href="lichsucontroller?mkh=${makh }">Thanh
-						toán</a></li>
-
-				<ul class="fa fa-search search-icon">
-					<li class="search_dropdown"><form class="form_search"
-							action="htgiayController">
-							<input class="input-form" type="text" name="txttk"
-								placeholder="Tìm kiếm...">
-							<button type="submit" class="fa fa-search search-icon-drop"></button>
-						</form></li>
-				</ul>
-				<li><a class="list_nav right" style="margin-left: 1em;"
-					href="htgioController">Giỏ hàng</a></li>
 			</ul>
-
 		</div>
-
-
 	</div>
 
-	<!----------------------------- CATEGORIES ----------------------------->
-	<div class="content">
-		<div valign="top" class="cate_container">
-			<h2 class="text-center" style="color: #337ab7; margin: 10px auto">Categories</h2>
-			<%
-			if (request.getAttribute("dsloai") != null) {
-				ArrayList<loaibean> dsloai = (ArrayList<loaibean>) request.getAttribute("dsloai");
-				for (loaibean l : dsloai) {
-			%>
-			<li><a class="list-items"
-				href="htgiayController?ml=<%=l.getMaloai()%>"> <%=l.getHanggiay()%></a></li>
-			<%
-			}
-			}
-			%>
-		</div>
-
-		<!-- ---------------------------HIỂN THỊ GIÀY--------------------------- -->
-		<div class="main_content" align="center">
-
-			<div class="list">
-				<%
-				if (request.getAttribute("dsgiay") != null) {
-					ArrayList<giaybean> dsgiay = (ArrayList<giaybean>) request.getAttribute("dsgiay");
-					for (giaybean s : dsgiay) {
-				%>
-				<div class="ctn">
-					<div class="img">
-						<img src="<%=s.getAnh()%>" alt="avatar" class="giay-img" />
+	<!----------------- CATEGORIES ----------------->
+	<div class="container">
+		<div class="nav_cate">
+			<div class="category">
+				<div class="cate_ctn">
+					<div class="cate_all">
+						<i class="fa fa-bars"></i> <span>All Categories</span>
 					</div>
-					<h3 class="giay-name"><%=s.getTengiay()%></h3>
-					<br>
-					<div class="price-buy">
-						price:
-						<div class=" price"><%=s.getGia() / 25000%>$
-						</div>
-						<a
-							href="giohangController?hd=add&ms=<%=s.getMagiay()%>&ts=<%=s.getTengiay()%>&gia=<%=s.getGia()%>&anh=<%=s.getAnh()%>">
-							<div class="btn btn-primary buy-btn">Thêm vào giỏ</div>
-						</a>
+					<ul class="list_cate">
+						<c:forEach items="${dsloai }" var="l">
+							<li class="list_book ls"><a class="loai"
+								href="htgiayController?ml=${l.getMaloai() }">
+									${l.getTenloai() }</a></li>
+						</c:forEach>
+					</ul>
+
+				</div>
+			</div>
+
+			<!----------------- TÌM KIẾM ----------------->
+			<div class="sach_ctn">
+				<div class="boxsearch">
+					<div style="width: 560px;">
+						<form class="form_search" action="htgiayController">
+							<input type="text" name="txttk"
+								placeholder="Nhập tên giày cần tìm...">
+							<button type="submit">SEARCH</button>
+						</form>
+					</div>
+					<div class="contact">
+						<a href="htgioController">GIỎ HÀNG <i
+							class="fa-sharp fa-solid fa-cart-shopping"></i></a>
 					</div>
 				</div>
 
-				<%
-				}
-				}
-				%>
+				<!----------------- HT GIÀY ----------------->
+				<div class="htsach">
+					<div class="ds_sach">
+						<c:forEach items="${dsgiay }" var="s">
+							<div class="sach"
+								onclick="location.href='giohangController?hd=add&ms=${s.getMagiay()}&tg=${s.getTengiay()}&gia=${s.getGia()}&anh=${s.getAnh()}&makh=${makh}'">
+								<div class="img-book">
+									<img class="img-sach" src="${s.getAnh() }" alt="avatar">
+								</div>
+								<h5 class="book_name">${s.getTengiay() }</h5>
+								<div class="mua">
+									<div class="gia">
+										<h5>${s.getGia() }đ</h5>
+									</div>
+									<div class="btn_mua">
+										<a
+											href="giohangController?hd=add&ms=${s.getMagiay()}&tg=${s.getTengiay()}&gia=${s.getGia()}&anh=${s.getAnh()}&makh=${makh}">
+											Mua hàng </a>
+									</div>
+								</div>
+
+								<span class="soluong">Hiện còn: ${s.getSoluong() }</span>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 
-
-	<footer class="footer">
-		<ul class="footer-title">
-			<li class="footer-intro">INTRO</li>
-			<li class="footer-social">SOCIAL</li>
+	<!----------------- PHÂN TRANG ----------------->
+	<div class="pagination-container">
+		<ul class="pagination">
+			<c:if test="${tag>1 }">
+				<li><a href="htgiayController?page=${tag-1}"><</a></li>
+			</c:if>
+			<c:forEach begin="1" end="${endPage }" var="i">
+				<li><a class="${tag==i?'active':''}"
+					href="htgiayController?page=${i }">${i }</a></li>
+			</c:forEach>
+			<c:if test="${tag < endPage }">
+				<li><a href="htgiayController?page=${tag+1 }">></a></li>
+			</c:if>
 		</ul>
-		<div class="footer-content" style="display: flex">
-			<div class="intro" style="display: block">‘Hãy mang những giấc
-				mơ của bạn lên đôi chân để dẫn lối giấc mơ đó thành hiện thực.’ –
-				Roger Vivier</div>
-			<div class="social">
-				<a class="social-icon fa-brands fa-facebook-f"
-					href="https://www.facebook.com/PhanVanThanhNhan"></a> <a
-					class="social-icon fa-brands fa fa-twitter"></a> <a
-					class="social-icon fa-brands fa fa-instagram"
-					href="https://www.instagram.com/thanh_nhan_1609/"></a> <a
-					class="social-icon fa-brands fa fa-github"
-					href="https://github.com/PhanVanThanhNhan"></a>
-			</div>
-		</div>
-		<div class="license">Phan Văn Thành Nhân - Mã sinh
-			viên:19T1021157</div>
-	</footer>
+	</div>
 
-	<!----------------------------- MODEL ĐĂNG NHẬP ----------------------------->
-	<input type="text" id="status" value="${status}">   
-	<div class="model js-model">
-		<div class="model-container js-model-container">
-			<form action="dangnhapController" method="post">
-				<div class="box__Login">
-					<div class="box__Login--Container">
-						<div>
-							<h1 style="color: #337ab7">ĐĂNG NHẬP</h1>
-							<input class="inp" name="txtun" type="text" value=""
-								placeholder="Tài khoản"> <br> <input class="inp"
-								name="txtpass" type="password" value="" placeholder="Mật khẩu"
-								id="password"> <span class="fa fa-eye show-pass-icon"
-								id="show_pass"></span> <br> <input class="Loginbtn"
-								name="butdn" type="submit" value="Đăng nhập">
-							<p>Quên mật khẩu?</p>
-							<%
-							if (request.getParameter("kt") != null) {
-								out.print("Dang nhap sai");
-							}
-							%>
-							Bạn chưa có tài khoản <a href=""
-								class="to-signup-btn js-to-signup">đăng ký</a>
-
-						</div>
-					</div>
+	<!----------------- MODAL ĐĂNG NHẬP ----------------->
+	<div class="center js_login">
+		<div class="ctn js_model_login">
+			<h1 style="color: #55ad39; user-select: none;">LOGIN</h1>
+			<form action="ktdn" method="post">
+				<div class="txt_field">
+					<input type="text" name="txtun" value="" required> <span></span>
+					<label>Username</label>
 				</div>
-
+				<div class="txt_field">
+					<input type="password" name="txtpass" value="" required> <span></span>
+					<label>Password</label>
+				</div>
+				<div class="pass" style="user-select: none;">Forgot Password?</div>
+				<input type="submit" value="Login">
+				<div class="signup_link">
+					Not a member? <a href="" class="js-to-signup">Signup</a>
+				</div>
 			</form>
 		</div>
 	</div>
 
-	<!----------------------------- MODAL ĐĂNG KÝ ----------------------------->
-	<div class="model-signup js-model-signup">
-		<div class="model-container-signup js-model-container-signup">
+	<!----------------- MODAL ĐĂNG KÝ ----------------->
+	<div class="center js_signin">
+		<div class="ctn js_model_signin" style="width: 33em">
+			<h1 style="color: #55ad39; user-select: none;">SIGN IN</h1>
 			<form action="khachhangController" method="post">
-				<div class="box__Login-signup">
-					<div class="box__Login--Container-signup">
-						<div>
-							<h1 style="color: #337ab7">ĐĂNG KÝ</h1>
-							<input class="inp" name="uname" type="text" value=""
-								placeholder="Họ và tên"> <br> <input class="inp"
-								name="txtun" type="text" value="" placeholder="Tài khoản">
-							<br> <input class="inp" name="txtpass" type="password"
-								value="" placeholder="Mật khẩu" id="password_signup"> <span
-								class="fa fa-eye show-pass-icon-signup" id="show_pass_signup"></span> <br>
-							<input class="inp" name="phone" type="text" value=""
-								placeholder="Sodt"> <br> <input class="inp"
-								name="email" type="email" value="" placeholder="Email">
-							<br> <input class="Loginbtn" name="butdn" type="submit"
-								value="Đăng ký"><br> Bạn đã có tài khoản <a
-								href="" class="to-login-btn">đăng nhập</a>
+				<table>
+					<tr>
+						<td><div class="txt_field">
+								<input type="text" name="uname" value="" required> <span></span>
+								<label>Họ tên</label>
+							</div></td>
+						<td>
+							<div class="txt_field right">
+								<input type="text" name="txtun" value="" required> <span></span>
+								<label>Username</label>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="txt_field ">
+								<input type="email" name="email" value="" required> <span></span>
+								<label>Email</label>
+							</div>
+						</td>
+						<td>
+							<div class="txt_field right">
+								<input type="password" name="txtpass" value="" required>
+								<span></span> <label>Password</label>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="txt_field">
+								<input type="text" name="phone" value="" required> <span></span>
+								<label>Số điện thoại</label>
+							</div>
+						</td>
+						<td><div class="txt_field right">
+								<input type="password" name="txtconfirm" value="" required>
+								<span></span> <label> Confirm Password</label>
+							</div></td>
+					</tr>
+					<tr>
+						<td><div class="txt_field">
+								<input type="text" name="address" value="" required> <span></span>
+								<label>Địa chỉ</label>
+							</div></td>
+					</tr>
 
-						</div>
-					</div>
+				</table>
+				<input type="submit" value="Sign in">
+				<div class="login_link">
+					Already have account? <a  class="to-login-btn"href="">Login</a>
 				</div>
-
 			</form>
 		</div>
 	</div>
+	
 
-	<!----------------------------- SCRIPT MODAL ĐĂNG NHẬP ----------------------------->
-	<script>
-    const login = document.querySelector('.js-login')
-    const model = document.querySelector('.js-model')
-    const modelContainer = document.querySelector('.js-model-container')
-    const tosignup = document.querySelector('.js-to-signup')
-    
-    document.getElementById('show_pass').onclick = function () {
-        let password = document.getElementById('password');
-        password.type = password.type == 'password' ? 'text' : 'password';
-    }
+	<script type="text/javascript">
+		const btnlogin = document.querySelector('.btn_login')
+		const centers = document.querySelector('.js_login')
+		const centerCtn = document.querySelector('.js_model_login')
+		const tosignup = document.querySelector('.js-to-signup')
+		
+		const btnsignin = document.querySelector('.btn_signin')
+		const center = document.querySelector('.js_signin')
+		const centerCtns = document.querySelector('.js_model_signin')
+		const changetologin = document.querySelector('.to-login-btn')
 
-    function showLogin() {
-        model.classList.add('open')
-    }
-    function hideLogin() {
-        model.classList.remove('open')
-    }
-    function showSignUPInLogin() {
-        modelSignUp.classList.add('open')
-        model.classList.remove('open')
-    }
-    tosignup.addEventListener('click', (event)=> {
-        event.preventDefault();
-        showSignUPInLogin();
-    })
-    login.addEventListener('click', showLogin)
-    model.addEventListener('click', hideLogin)
-    modelContainer.addEventListener('click', function (event) {
-        event.stopPropagation()
-    })
+		function showLogin() {
+			centers.classList.add('open')
+		}
+		function hideLogin() {
+			centers.classList.remove('open')
+		}
+		function showSignUPInLogin() {
+	        center.classList.add('open')
+	        centers.classList.remove('open')
+	    }
+	    tosignup.addEventListener('click', (event)=> {
+	        event.preventDefault();
+	        showSignUPInLogin();
+	    })
+		btnlogin.addEventListener('click', showLogin)
+		centers.addEventListener('click', hideLogin)
+		centerCtn.addEventListener('click', function(event) {
+			event.stopPropagation()
+		})
+
+		function showSignin() {
+			center.classList.add('open')
+		}
+		function hideSignin() {
+			center.classList.remove('open')
+		}
+		function showLoginInRegister() {
+	        center.classList.remove('open')
+	        centers.classList.add('open')
+	    }
+	    changetologin.addEventListener('click', (event)=>{
+	    	event.preventDefault();
+	    	showLoginInRegister();
+	    })
+		btnsignin.addEventListener('click', showSignin)
+		center.addEventListener('click', hideSignin)
+		centerCtns.addEventListener('click', function(event) {
+			event.stopPropagation()
+		})
 	</script>
-	<script>
-		/* SCRIPT MODAL ĐĂNG KÝ */
-	const signup = document.querySelector('.js-signup')
-    const modelSignUp = document.querySelector('.js-model-signup')
-    const modelSignUpContainer = document.querySelector('.js-model-container-signup')
-    const changetologin = document.querySelector('.to-login-btn')
-
-	 document.getElementById('show_pass_signup').onclick = function () {
-        let password = document.getElementById('password_signup');
-        password.type = password.type == 'password' ? 'text' : 'password';
-    }
-    function showSignUp() {
-        modelSignUp.classList.add('open')
-    }
-    function hideSignUp() {
-        modelSignUp.classList.remove('open')
-    }
-    function showLoginInRegister() {
-        showLogin()
-        hideSignUp()
-    }
-
-    changetologin.addEventListener('click', (event)=> {
-        event.preventDefault();
-        showLoginInRegister();
-    })
-    signup.addEventListener('click', showSignUp)
-    modelSignUp.addEventListener('click', hideSignUp)
-    
-    modelSignUpContainer.addEventListener('click', function (event) {
-        event.stopPropagation()
-    })
-</script>
-
-		 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>   
-		 <script type="text/javascript">
-		    	var status = document.getElementById("status").value;
-		    	if(status=="failed") {
-		    		swal("Lỗi","Sai Tên Đăng Nhập Hoặc Mật Khẩu","error");
-		    	}
-		    </script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script type="text/javascript">
+		var status = document.getElementById("status").value;
+		if (status == "failed") {
+			swal("Lỗi", "Sai Tên Đăng Nhập Hoặc Mật Khẩu", "error");
+			centers.classList.add('open')
+		}
+		if(status == "notlogin"){
+			centers.classList.add('open')
+		}
+	</script>
 </body>
 </html>

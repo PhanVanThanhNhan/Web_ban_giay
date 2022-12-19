@@ -4,12 +4,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class khachhangdao {
-	public int checkKhachHang(String tk, String mk) {
+	public int checkkhachhang(String tk, String mk) {
 		try {
 			// B1: kết nối csdl
 			CoSodao cs = new CoSodao();
 			cs.KetNoi();
-			String sql = "select count(*) from khachhang where username = ? and password = ?";
+			String sql = "select count(*) from khachhang where tendn = ? and password = ?";
 			PreparedStatement cmd = cs.cn.prepareStatement(sql);
 			cmd.setString(1, tk);
 			cmd.setString(2, mk);
@@ -28,12 +28,12 @@ public class khachhangdao {
 		return 0;
 	}
 
-	public String getTenKhachHang(String tk, String mk) {
+	public String gettenkhachhang(String tk, String mk) {
 		try {
 			// B1: kết nối csdl
 			CoSodao cs = new CoSodao();
 			cs.KetNoi();
-			String sql = "select tenkh from khachhang where username = ? and password = ?";
+			String sql = "select hoten from khachhang where tendn = ? and password = ?";
 			PreparedStatement cmd = cs.cn.prepareStatement(sql);
 			cmd.setString(1, tk);
 			cmd.setString(2, mk);
@@ -52,30 +52,32 @@ public class khachhangdao {
 		return null;
 	}
 
-	public void addKhachHang(String tenkh, String username, String password, String email, String sdt) {
+	public int addkhachhang(String hoTen, String diaChi, String sdt, String email, String tk, String mk) {
 		try {
 			CoSodao cs = new CoSodao();
 			cs.KetNoi();
-			String sql = "insert into khachhang values (?, ?, ?, ?, ?)";
+			String sql = "insert into khachhang values (?, ?, ?, ?, ?, ?)";
 			PreparedStatement cmd = cs.cn.prepareStatement(sql);
-			cmd.setString(1, tenkh);
-			cmd.setString(2, username);
-			cmd.setString(3, password);
+			cmd.setString(1, hoTen);
+			cmd.setString(2, tk);
+			cmd.setString(3, mk);
 			cmd.setString(4, email);
 			cmd.setString(5, sdt);
-			ResultSet rs = cmd.executeQuery();
-			rs.close();
+			cmd.setString(6, diaChi);
+			int rs = cmd.executeUpdate();
 			cs.cn.close();
+			return rs;
 		}catch (Exception e) {
 			e.printStackTrace();
+			return 0;
 		}
 	}
-	public String getMaKhachHang(String tdn) {
+	public String getmakhachhang(String tdn) {
 		try {
 			CoSodao cs = new CoSodao();
 			cs.KetNoi();
 			String sql = "select makh from khachhang\r\n"
-					+ "where username = ?";
+					+ "where tendn = ?";
 			PreparedStatement cmd = cs.cn.prepareStatement(sql);
 			cmd.setString(1, tdn);
 			ResultSet rs = cmd.executeQuery();

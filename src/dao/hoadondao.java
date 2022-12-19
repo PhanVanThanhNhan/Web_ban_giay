@@ -30,12 +30,12 @@ public class hoadondao {
 			ArrayList<Integer> ds = new ArrayList<Integer>();
 			CoSodao cs = new CoSodao();
 			cs.KetNoi();
-			String getMahd = "select mahoadon from hoadon where makh = ?";
+			String getMahd = "select MaHoaDon from hoadon where makh = ?";
 			PreparedStatement cmd = cs.cn.prepareStatement(getMahd);
 			cmd.setInt(1, mkh);
 			ResultSet rs2 = cmd.executeQuery();
 			while (rs2.next()) {
-				ds.add(rs2.getInt("mahoadon"));
+				ds.add(rs2.getInt("MaHoaDon"));
 			}
 			rs2.close();
 			cs.cn.close();

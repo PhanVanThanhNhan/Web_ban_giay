@@ -10,17 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bo.loaibo;
+
 /**
- * Servlet implementation class logoutController
+ * Servlet implementation class loadloaiController
  */
-@WebServlet("/logoutController")
-public class logoutController extends HttpServlet {
+@WebServlet("/loadloaiController")
+public class loadloaiController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public logoutController() {
+    public loadloaiController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,11 +31,14 @@ public class logoutController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		loaibo l = new loaibo();
+		String maloai = request.getParameter("maloai");
 		HttpSession session = request.getSession();
-		session.removeAttribute("DangNhap") ;
-		 RequestDispatcher rd = request.getRequestDispatcher("htgiayController");
-		 rd.forward(request, response);
+		session.setAttribute("mal", maloai);
+		request.setAttribute("ml", maloai);
+		request.setAttribute("tl", l.getTenLoai(maloai));
+		RequestDispatcher rd = request.getRequestDispatcher("adminSuaLoai.jsp");
+		rd.forward(request, response);
 	}
 
 	/**

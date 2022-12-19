@@ -1,304 +1,451 @@
 <%@page import="bean.giohangbean"%>
 <%@page import="bo.giohangbo"%>
+<%@page import="bo.giaybo"%>
 <%@page import="bo.loaibo"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="bean.giaybean"%>
+<%@page import="dao.giaydao"%>
 <%@page import="bean.loaibean"%>
 <%@page import="dao.loaidao"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Giỏ Hàng</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
 <style type="text/css">
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	transition: all .2s linear;
-	font-family: sans-serif;
-	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    font-family: sans-serif;
+}
+body {
+    width: 100%;   
+    background-color:  #f5f5f5;
+}
+.header {
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+    box-shadow: 0px 1px #e7e7e7;
+    position: fixed;
+    z-index: 30;
+    top: 0;
+}
+.header_ctn {
+    display: flex;
+    margin-left: 105px;
+    height: 100%;
+    
+}
+.navlist {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+li {
+    font: 14px;
+    list-style: none;
+    margin: 10px;
+}
+.list_nav{
+    text-transform: uppercase;
+    color: #252525;
+    text-decoration: none;
+    font-weight: 700;
+    transition:  .35s;
+
+}
+.list_nav:hover{
+    color: #55ad39;
+}
+.active {
+    color: #55ad39;
 }
 
-.navbar {
-	background: rgba(0, 0, 0, 0.9);
-	height: 80px;
+li.list_book.ls {
+    margin: 0;
+    padding: 2px 0 0 15px;
+    height: 30px;
+}
+.loai {
+    text-decoration: none;
+    font-size: 13px;
+    color: #000;
+}
+.ls:hover {
+    background-color: #e7e7e7;
+    border-left: 2px solid #55ad39;
+}
+.log {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 5%;
+}
+.login {
+    text-align: right;
+}
+.container{
+    width: 80%;
+    margin:60px 10% 80px;
+    min-height: 100vh;
+    position: relative;
+    
+}
+.nav_cate {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.category {
+    width: 220px;
+    height: 100%;
+    margin-right: 30px;
+}
+.cate_ctn {
+    width: 100%;
+    
+    background-color: #fff;
+}
+.cate_all {
+    height: 50px;
+    background-color: #55ad39;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+    line-height: 2.5;
+    font-family: Tahoma, sans-serif;
+    user-select: none;
+}
+.cate_all>i {
+    margin-right: 6px;
+}
+.list_cate {
+    box-shadow: 0px 1px #e7e7e7;
+}
+.list_book {
+    margin:10px 0 4px 25px;
+    font-size: 15px;
+    font-family: Tahoma, sans-serif;
+}
+.sach_ctn {
+    width: calc(100% - 250px);;
+}
+.boxsearch {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    margin: 0 5px;
+}
+.form_search{
+    height: 50px;
+    position: relative;
+}
+.form_search>button{
+    background-color: #55ad39;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    width: 150px;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+}
+input[type=text]{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #cecece;
+    padding: 12px 20px;
+    transition: .35s;
+    outline: none;
+}
+input[type=text]:focus{
+    border: 1px solid #55ad39;
+}
+.contact{
+    background-color: #55ad39;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    width: 180px;
+    height: 50px;
+    cursor: pointer;
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.giohang{
+    width: 100%;
+    background-color: transparent;
+}
+.cnt {
+    width: 100%;
+}
+.book_name {
+    color: #55ad39;
+    font-weight: 700;
+    width: 100%;
+    height: 20%;
+}
+.soluong {
+    font-size: 8px;
+}
+.mua{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 40px;  
+}
+a {
+    text-decoration: none;
+    margin: 0 10px;
+    color: #fff;
+    line-height: 2.2;
+}
+.tb_gh{
+    width: 100%;
+    margin-top:-2px;
+    font-size: 14px;
+    color: #000;
+    font-family: 'Tahoma', sans-serif;
+}
+thead {
+    height: 50px;
+    background-color: #55ad39;
+    color: #fff;
+    font-size: 14px;
+}
+td {
+    height: 100px;
+    background-color: #fff;
+    text-align: center;
+}
+.name_book {
+    text-align: left;
+    padding-left: 8px;
+    
+}
+.img_book {
+    width: 80px;
+    height: 90px;
+}
+td>a {
+    /* color: #fff; */
+    margin: 0;
+    margin-bottom: 4px;
+    display: inline-block;
+    width: 75%;
+    background-color: #55ad39;
+    border-radius: 6px;
+}
+td>a:hover{
+    opacity: 0.8;
+}
+tbody>tr {
+    box-shadow: 1px 1px #e7e7e7;
+    
+}
+tbody>tr:hover{
+	opacity: 0.85;
+}
+.tac {
+    background-color: orangered;
+
+}
+.sum {
+    color: red;
+    font-weight: 600;
+}
+input[type=number]{
+    text-align: center;
+    width: 50px;
+    height: 30px;
+    outline: none;
+    border: 1px solid #cecece;
+}
+
+input[type=number]:focus{
+    border: 1px solid #55ad39;
+}
+.payment{
 	position: fixed;
-	z-index: 1000;
-	top: 0;
-	left: 0;
-	right: 0;
-	border-radius: 0;
-	border: 0;
-	margin: 0;
-	alight-items: center;
+	left:0;
+	bottom:0;
+	right:0;
+	width:100%;
+	height:70px;
+	border-top:1px solid #e7e7e7;
+	background-color: #fff;
+}
+.payment>.ctn {
+    width: 80%;
+    height:70px;
+    display:flex;
+    align-items: center;
 	justify-content: space-between;
-	text-align: center;
+    margin: 0 10%;
 }
-
-.container-fluid {
-	display: flex;
-	align-items: center;
-	text-align: center;
+.btn {
+    color: #fff;
+    padding:0 20px;
+    border-radius: 18px;
+    border: none;
+    background-color: #55ad39;
 }
-
-.navbar-inverse .container-fluid>.navbar-brand>.active>a {
-	color: #fff;
-	background-color: #10E8E8;
+.btn_del {
+    border: none;
+    cursor: pointer;
+    padding: 4px 10px;
+    background-color: orangered;
+    color: #fff;
+    border-radius: 12px;
 }
-
-.container-fluid a {
-	color: #9d9d9d !important;
+.btn.pay{
+    background-color: orangered;
 }
-
-.container-fluid a:hover {
-	color: #337ab7 !important;
-	background: #000 !important;
+.btn_group {
+    display: flex;
 }
-
-.form-control {
-	width: 180px;
-	margin: 10px auto 0;
-	margin-left: 9em !important;
+.btn_del:hover, .btn:hover {
+    opacity: 0.8;
 }
-.navbar-inverse .navbar-nav>li>a{
-	margin-left:2em;
+.btn_del:active, .btn:active {
+    opacity: 0.6;
 }
-.navbar-header {
-	margin-left: 12em !important;
-	nargin-right: 12em !important;
-}
-
-.search-button {
-	background-color: red !important;
-	margin-left: 10px !important;
-	width: 80px !important;
-}
-
-input[type=submit] {
-	background-color: orangered;
-	color: white;
-	margin: 11px auto;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-}
-
-input[type=submit]:hover {
-	opacity: 0.8;
-}
-
-table {
-	margin-top: 50px;
-}
-
-.btn-primary {
-	border: none;
-	background-color: red;
-	padding: 6px 8px;
-	margin: auto;
-	border-radius: 5px;
-	width: 130px;
-}
-
-.book {
-	display: inherit;
-	background-color: #cbcbcb;
-	border-radius: 20px;
-	padding: 20px;
-	cursor: pointer;
-}
-
-.book-img {
-	width: 234px;
-	height: 264px;
-	border-radius: 10px;
-	transform: scale(1.1);
-}
-
-.list-items {
-	display: block;
-	width: 100%;
-	height: 40px;
-	padding: 8px 10px;
-	border: 1px solid #ccc;
-	color: #000;
-}
-
-.list-items:hover {
-	text-decoration: none;
-	background-color: #10E8E8;
-	color: #fff;
-	font-weight: 600;
-}
-
-.image:hover {
-	transform: scale(1.1);
+.sum_all {
+    user-select: none;
+    text-align: right;
+    margin-right: 20px;
 }
 </style>
 
 </head>
 <body>
-
-	<!----------------------------- NAV BAR ----------------------------->
-	<nav class="navbar navbar-inverse"
-		style="display: flex; color: #10E8E8; position: absolute;">
-		<div class="container-fluid">
-			<ul class="nav navbar-nav navbar-left">
-				<%
-				if (session.getAttribute("DangNhap") == null) {
-				%>
-				<ul class="nav navbar-nav ">
-					<li><a href="dangnhap.jsp"><span class=""></span>ĐĂNG NHẬP</a></li>
-					<li class="js-login"><a href="#"><span></span>ĐĂNG
-							KÝ</a></li>
-				</ul>
-				<%
-				} else {
-				%>
-				<ul style="margin-left: 130px;" class="nav navbar-nav navbar-right">
-					<li><a href="logoutController"><span
-							class=""></span> ĐĂNG XUẤT</a></li>
-					<li><a><span>Xin chào, <%=session.getAttribute("DangNhap")%>!
-						</span></a></li>
-				</ul>
-				<%
-				}
-				%>
-			</ul>
-
-			<div class="navbar-header">
-				<a class="navbar-brand homepage" href="htgiayController">Trang
-					chủ</a>
-			</div>
-			<ul class="nav navbar-nav">
-				<li><a href="#">Thanh toán</a></li>
-				<li><a href="#">Lịch sử mua hàng</a></li>
-				<form
-					style="display: flex; text-align: center; justify-content: space-between;"
-					action="htgiayController" method="get">
-					<input class="form-control" type="text" name="txttk"
-						placeholder="Tìm kiếm..."> <input
-						class="btn-primary search-button" type="submit" value="Tìm kiếm">
-				</form>
-			</ul>
-
-
-		</div>
-	</nav>
-
-	<table align="center" class="table">
-		<td valign="top" width="60%">
-			<form action="giohangController" method="GET" id="my_form"></form>
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th style="width: 5%">STT</th>
-						<th style="width: 15%">Sản phẩm</th>
-						<th style="width: 24%">Tên giày</th>
-						<th style="width: 10%">Đơn giá</th>
-						<th style="width: 10%">Số lượng</th>
-						<th style="width: 10%">Số tiền</th>
-						<th style="width: 20%">Thao tác</th>
-						<th style="width: 5%"><input type="submit" form="my_form"
-							class="btn" value="xoá" name="btn-cb-del"></th>
-					</tr>
-				</thead>
-
-				<tbody>
-					<%
-					int i = 0;
-					giohangbo gh = (giohangbo) session.getAttribute("gio");
-					if (gh != null)
-						for (giohangbean h : gh.ds) {
-							i = i + 1;
-					%>
-					<tr>
-
-						<td data-th="STT">
-							<h4><%=i%></h4>
-						</td>
-						<td data-th="Sản phẩm">
-							<div class="row">
-								<img src="<%=h.getAnh()%>" alt=""
-									class="img-fluid image d-md-block rounded mb-2 shadow "
-									style="width: 90px; margin-left: 15px">
-							</div>
-						</td>
-						<td data-th="Tên sách">
-							<h4 style="margin-top: 30px"><%=h.getTengiay()%></h4>
-						</td>
-						<td data-th="Đơn giá">
-							<h4 style="margin-top: 30px"><%=h.getGia()%>€
-							</h4>
-						</td>
-
-						<td data-th="Số lượng"><input type="number"
-							class="form-control form-control-lg text-center"
-							style="margin-top: 20px" id=<%=h.getMagiay()%>
-							value=<%=h.getSoluong()%>></td>
-						<td data-th="Đơn giá">
-							<h4 style="color: #ee4d2d;"><%=(h.getGia() * h.getSoluong()) / 25000%>$
-							</h4>
-						</td>
-						<td class="actions" data-th="Thao tác">
-							<div style="">
-								<a href="#"
-									onclick="location.href='giohangController?hd=update&soluong='+document.getElementById('<%=h.getMagiay()%>').value+'&ms=<%=h.getMagiay()%>'"
-									style="padding-right: 10px"> Cập nhật</a> | <a
-									href="giohangController?hd=remove&ms=<%=h.getMagiay()%>"
-									style="padding-left: 5px"> Trả lại</a>
-
-							</div>
-						</td>
-						<td><input type="checkbox" form="my_form"
-							style="margin-top: 30px" class="Check-box" name="cb-del"
-							value=<%=h.getMagiay()%>></td>
-					</tr>
-					<%
-					}
-					%>
-				</tbody>
-			</table>
-			<div class="float-right text-right">
-				<%
-				if (gh != null) {
-				%>
-				<h4>
-					<b>(Sản phẩm: </b><b style="color: #ee4d2d"><%=i%></b><b> )</b>
-				</h4>
-				<h2>
-					<b>Tổng tiền:</b> <b style="color: #ee4d2d"><%=gh.TongTien() / 25000%>$<b>
-				</h2>
-				<%
-				}
-				%>
-			</div>
-			<div class="row mt-4 d-flex align-items-center">
-				<div style="display: flex; padding: 10px 50px 10px 250px;">
-					<a class="btn btn-primary" href="htgiayController"> Tiếp tục
-						mua hàng</a>
-					<%
-					if (gh != null) {
-					%>
-					<a class="btn btn-primary" href="giohangController?hd=removeAll">
-						Trả lại tất cả</a> <a class="btn btn-primary" href="dathangcontroller">Xác
-						nhận đặt hàng</a>
-					<%
-					}
-					%>
-				</div>
-			</div>
-		</td>
-	</table>
-
+	<div class="header">
+        <div class="header_ctn">
+            <ul class="navlist">
+                <li><a class="list_nav" href="htgiayController">Trang chủ</a></li>
+                <li><a class="list_nav active" href="htgioController">Giỏ hàng</a></li>
+               <!--  <li><a class="list_nav" href="">Thanh toán</a></li> -->
+                <li><a class="list_nav" href="lichsucontroller?mkh=${makh }">Lịch sử mua hàng</a></li>
+                
+               
+			
+			<c:if test="${DangNhap==null }">
+                <div class="log">
+                    <li class="login"><a class="list_nav" href="ktdn">Đăng nhập</a></li>
+                    <li class="signin"><a class="list_nav" href="khachhangController">Đăng ký</a></li>
+                </div>
+            </c:if>
+            <c:if test="${DangNhap != null }">
+				
+					<div class="log">
+	                    <li class="login" style="cursor:pointer;"><a style="color: #000;user-select:none;cursor: default;">Xin chào, <c:out value="${DangNhap}" />!</a></li>
+	                    <li class="signin"><a href="logout" class="list_nav">Đăng xuất</a></li>
+                    </div>
+			</c:if> 
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <div class="nav_cate">
+            <div class="category">
+                <div class="cate_ctn">
+                    <div class="cate_all">
+                        <i class="fa fa-bars"></i>
+                        <span>All Categories</span>
+                    </div>
+                    <ul class="list_cate">
+                    <c:forEach items="${dsloai }" var="l">
+                        <li class="list_book ls"><a class="loai" href="htgiayController?ml=${l.getMaloai() }">
+							${l.getTenloai() }</a></li>
+                        </c:forEach>
+                    </ul>
+                </div>
+            </div>
+            <div class="sach_ctn">
+                <div class="giohang">
+                    <div class="ctn">
+                        <form action="giohangController" method="GET" id="my_form"></form>
+                            <table class="tb_gh">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 17%">Sản phẩm</th>
+                                        <th style="width: 30% ">Tên giày</th>
+                                        <th style="width: 10%">Đơn giá</th>
+                                        <th style="width: 9%">Số lượng</th>
+                                        <th style="width: 12%">Thao tác</th>
+                                        <th style="width: 14%">Số tiền</th>
+                                        <th style="width: 10%"><input class ="btn_del"  type="submit" form="my_form"
+                                            value="xoá" name="btn-cb-del">
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                	<c:forEach items="${ds }" var="d">
+	                                    <tr>
+	                                        <td data-th="Sản phẩm">
+	                                            <img class="img_book" src="${d.getAnh() }" alt="">
+	                                        </td>
+	                                        <td class="name_book" data-th="Tên giày">${d.getTengiay()}</td>
+	                                        <td data-th="Đơn giá">${d.getGia() }đ</td>
+	                                        <td data-th="Số lượng">
+	                                            <input type="number" min="0" id=${d.getMagiay() } value=${d.getSoluong() }>
+	                                        </td>
+	                                        <td data-th="Thao tác">
+	                                            <a href="#" onclick="location.href='giohangController?hd=update&soluong='+document.getElementById('${d.getMagiay() }').value+'&ms=${d.getMagiay() }'">
+												Cập nhật </a>
+	                                            <a class="tac" href="giohangController?hd=remove&ms=${d.getMagiay()}"> Trả lại</a>
+	                                    	</td>
+	                                        <td class="sum" data-th="Thành tiền">${d.getGia() * d.getSoluong() }đ</td>
+	                                        <td data-th=""><input style="cursor: pointer;" type="checkbox" form="my_form"
+	                                            class="Check-box" name="cb-del"
+	                                            value=${d.getMagiay() }></td>
+	                                    </tr>
+	                         		</c:forEach>
+	                         		
+                                </tbody>
+                            </table>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+    <div class="payment">
+        <div class="ctn">
+            <div class="btn_group">
+                <a class="btn" href="htgiayController">Tiếp tục mua hàng</a>		
+                <a class="btn" href="giohangController?hd=removeAll">Trả lại tất cả</a>
+                <a class="btn pay" href="lichsucontroller?hd=thanhtoan&mkh=${makh }">Xác nhận đặt hàng</a>
+                <!-- <form action="dathangController" method="post">
+                	<button class="btn" style="padding: 12px 12px;" type="submit" name="abc">Xác  nhận đặt hàng</button>
+                </form>  -->       
+            </div>
+            <div class="sum_all">
+                <h4> (Tổng số: <b style="color:orangered;">${ds.size() }</b> sản phẩm)</h4>
+                <h2 style="color:orangered;">Tổng tiền: ${gio.TongTien() } VNĐ</h2>
+            </div>
+        </div>
+    </div>
+    
 </body>
 </html>

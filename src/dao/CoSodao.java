@@ -10,13 +10,16 @@ public class CoSodao {
 		//b1: xac dinh he qtcsdl
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		cn=DriverManager.getConnection("jdbc:sqlserver://ADMIN\\SQLEXPRESS:1433;databaseName=QlBanGiay;user=sa; password=123");
+		
 		}
 		catch (Exception e) {
 		e.printStackTrace();
+		
 		}
 	}
 	public static void main(String[] ts) {
 		CoSodao cs = new CoSodao();
 		cs.KetNoi();
+		
 	}
 }

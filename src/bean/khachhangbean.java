@@ -1,61 +1,85 @@
 package bean;
 
 public class khachhangbean {
-	private String makh;
-	private String tenkh;
-	private String username;
-	private String password;
-	private String email;
-	private String sdt;
+	public String Makh;
+	public String hoten;
+	public String diachi;
+	public String sodt;
+	public String email;
+	public String tendn;
+	public String pass;
+
 	public khachhangbean() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public khachhangbean(String makh, String tenkh, String username, String password, String email, String sdt) {
+
+	public khachhangbean(String makh, String hoten, String diachi, String sodt, String email, String tendn,
+			String pass) {
 		super();
-		this.makh = makh;
-		this.tenkh = tenkh;
-		this.username = username;
-		this.password = password;
+		Makh = makh;
+		this.hoten = hoten;
+		this.diachi = diachi;
+		this.sodt = sodt;
 		this.email = email;
-		this.sdt = sdt;
+		this.tendn = tendn;
+		this.pass = pass;
 	}
+
 	public String getMakh() {
-		return makh;
+		return Makh;
 	}
+
 	public void setMakh(String makh) {
-		this.makh = makh;
+		Makh = makh;
 	}
-	public String getTenkh() {
-		return tenkh;
+
+	public String getHoten() {
+		return hoten;
 	}
-	public void setTenkh(String tenkh) {
-		this.tenkh = tenkh;
+
+	public void setHoten(String hoten) {
+		this.hoten = hoten;
 	}
-	public String getUsername() {
-		return username;
+
+	public String getDiachi() {
+		return diachi;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+
+	public void setDiachi(String diachi) {
+		this.diachi = diachi;
 	}
-	public String getPassword() {
-		return password;
+
+	public String getSodt() {
+		return sodt;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+
+	public void setSodt(String sodt) {
+		this.sodt = sodt;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getSdt() {
-		return sdt;
+
+	public String getTendn() {
+		return tendn;
 	}
-	public void setSdt(String sdt) {
-		this.sdt = sdt;
+
+	public void setTendn(String tendn) {
+		this.tendn = tendn;
 	}
-	
-	
+
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+
 }

@@ -5,18 +5,20 @@ public class giohangbean {
 	private String tengiay;
 	private long soluong;
 	private long gia;
+	@SuppressWarnings("unused")
 	private long thanhtien;
 	private String anh;
 	public giohangbean() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public giohangbean(String magiay, String tengiay, long soluong, long gia,  String anh) {
+	public giohangbean(String magiay, String tengiay, long soluong, long gia, String anh) {
 		super();
 		this.magiay = magiay;
 		this.tengiay = tengiay;
 		this.soluong = soluong;
 		this.gia = gia;
+		this.thanhtien = soluong*gia;
 		this.anh = anh;
 	}
 	public String getMagiay() {
@@ -46,7 +48,9 @@ public class giohangbean {
 	public long getThanhtien() {
 		return soluong*gia;
 	}
-
+	public void setThanhtien(long thanhtien) {
+		this.thanhtien = thanhtien;
+	}
 	public String getAnh() {
 		return anh;
 	}

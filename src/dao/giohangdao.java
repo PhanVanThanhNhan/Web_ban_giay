@@ -9,7 +9,7 @@ public class giohangdao {
 			// B1: kết nối csdl
 			CoSodao cs = new CoSodao();
 			cs.KetNoi();
-			String sql = "select count(*) from GioHang where magiay = ?";
+			String sql = "select count(*) from giohang where magiay = ?";
 			PreparedStatement cmd = cs.cn.prepareStatement(sql);
 			cmd.setString(1, magiay);
 			ResultSet rs = cmd.executeQuery();
@@ -30,7 +30,7 @@ public class giohangdao {
 		try {
 			CoSodao cs = new CoSodao();
 			cs.KetNoi();
-			String sql = "insert into GioHang values (?, ?, ?, ?, ?, ?)";
+			String sql = "insert into giohang values (?, ?, ?, ?, ?, ?)";
 			PreparedStatement cmd = cs.cn.prepareStatement(sql);
 			cmd.setString(1, magiay);
 			cmd.setString(2, tengiay);
@@ -45,15 +45,15 @@ public class giohangdao {
 			e.printStackTrace();
 		}
 	}
-	public void updateGiay(String magiay, long gia, long soLuong) {
+	public void updateGiay(String maGiay, long gia, long soLuong) {
 		try {
 			CoSodao cs = new CoSodao();
 			cs.KetNoi();
-			String sql = "update GioHang set thanhtien = ?, soluong = ?  where magiay = ?";
+			String sql = "update GioHang set thanhtien = ?, soluong = ?  where masach = ?";
 			PreparedStatement cmd = cs.cn.prepareStatement(sql);
 			cmd.setLong(1, gia*soLuong);
 			cmd.setLong(2, soLuong);
-			cmd.setString(3, magiay);
+			cmd.setString(3, maGiay);
 			ResultSet rs = cmd.executeQuery();
 			rs.close();
 			cs.cn.close();

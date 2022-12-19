@@ -17,51 +17,56 @@ import bo.khachhangbo;
 @WebServlet("/khachhangController")
 public class khachhangController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public khachhangController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	public khachhangController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		khachhangbo tk = new khachhangbo();
-		String tenkh = request.getParameter("uname");
-		String username = request.getParameter("txtun");
-		String password = request.getParameter("txtpass");
-		String email = request.getParameter("email");
+		String ten = request.getParameter("uname");
+		String un = request.getParameter("txtun");
+		String pass = request.getParameter("txtpass");
+		String conf = request.getParameter("txtconfirm");
+		String addr = request.getParameter("address");
 		String sdt = request.getParameter("phone");
-		if (username != null && password != null ) {
-			if (tk.checkKhachHang(username, password)==0) {
-				tk.addKhachHang(tenkh, username, password, email, sdt);
+		String email = request.getParameter("email");
+		if (un != null && pass != null && conf != null) {
+			if (tk.Checkkhachhang(un, pass) == 0) {
+				tk.Addkhachhang(ten, addr, sdt, email, un, pass);
 //			if (session.getAttribute("DangNhap") != null)
 //					session.setAttribute("DangNhap", "");
 //				session.setAttribute("DangNhap", tk.getTenKhachHang(un, pass));
 //				response.sendRedirect("htsachController");
-				RequestDispatcher rd = request.getRequestDispatcher("dangnhapController");
+				RequestDispatcher rd = request.getRequestDispatcher("ktdn");
 				rd.forward(request, response);
-			}else {
-				RequestDispatcher rd = request.getRequestDispatcher("htgiay.jsp");
+			} else {
+				RequestDispatcher rd = request.getRequestDispatcher("htgiayController");
 				rd.forward(request, response);
 			}
-		}else {
-			RequestDispatcher rd = request.getRequestDispatcher("htgiay.jsp");
+		} else {
+			RequestDispatcher rd = request.getRequestDispatcher("htgiayController");
 			rd.forward(request, response);
 		}
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

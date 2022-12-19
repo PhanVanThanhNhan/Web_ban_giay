@@ -12,7 +12,7 @@ import bo.giohangbo;
 import bo.loaibo;
 
 /**
- * Servlet implementation class giohanhController
+ * Servlet implementation class giohangController
  */
 @WebServlet("/giohangController")
 public class giohangController extends HttpServlet {
@@ -30,10 +30,9 @@ public class giohangController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		String hd = request.getParameter("hd");
-		String masach = request.getParameter("ms");
+		String magiay = request.getParameter("ms");
 
 		giohangbo gh = null;
 
@@ -61,7 +60,7 @@ public class giohangController extends HttpServlet {
 		}
 		if (hd != null) {
 			if (hd.equals("add")) {
-				String tensach = request.getParameter("ts");
+				String tengiay = request.getParameter("tg");
 				long soluong = (long) 1;
 				long gia = Long.parseLong(request.getParameter("gia"));
 				String anh = request.getParameter("anh");
@@ -74,7 +73,7 @@ public class giohangController extends HttpServlet {
 				}
 
 				gh = (giohangbo) session.getAttribute("gio");
-				gh.Them(masach, tensach, soluong, gia, anh);
+				gh.Them(magiay, tengiay, soluong, gia, anh);
 
 			} else if (hd.equals("remove")) {
 
@@ -87,7 +86,7 @@ public class giohangController extends HttpServlet {
 
 				if (hd.equals("remove")) {
 					gh = (giohangbo) session.getAttribute("gio");
-					gh.Xoa(masach);
+					gh.Xoa(magiay);
 				}
 
 			} else if (hd.equals("update")) {
@@ -99,7 +98,7 @@ public class giohangController extends HttpServlet {
 				}
 
 				gh = (giohangbo) session.getAttribute("gio");
-				gh.SuaSoLuong(masach, soluong);
+				gh.SuaSoLuong(magiay, soluong);
 
 			} else if (hd.equals("removeAll")) {
 
@@ -116,7 +115,6 @@ public class giohangController extends HttpServlet {
 			session.setAttribute("ds", gio.ds);
 		}
 		response.sendRedirect("htgioController");
-
 	}
 
 	/**

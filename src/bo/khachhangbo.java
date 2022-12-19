@@ -4,16 +4,20 @@ import dao.khachhangdao;
 
 public class khachhangbo {
 	khachhangdao khdao = new khachhangdao();
-	public String getTenKhachHang(String tk, String mk) {
-		return khdao.getTenKhachHang(tk, mk);
+
+	public String GetTenkhachhang(String tk, String mk) {
+		return khdao.gettenkhachhang(tk, mk);
 	}
-	public int checkKhachHang(String tk, String mk) {
-		return khdao.checkKhachHang(tk, mk);
+
+	public int Checkkhachhang(String tk, String mk) {
+		return khdao.checkkhachhang(tk, mk);
 	}
-	public void addKhachHang(String tenkh, String username, String password, String email, String sdt) {
-		khdao.addKhachHang(tenkh, username, password, email, sdt);
+
+	public void Addkhachhang(String hoTen, String diaChi, String sdt, String email, String tk, String mk) {
+		khdao.addkhachhang(hoTen, diaChi, sdt, email, tk, mk);
 	}
-	public String getMaKhachHang(String un) {
-		return khdao.getMaKhachHang(un);
+
+	public String Getmakhachhang(String un) {
+		return khdao.getmakhachhang(un);
 	}
 }

@@ -2,29 +2,27 @@ package bean;
 
 public class loaibean {
 	private String maloai;
-	private String hanggiay;
-	
-	
-	public loaibean(String maloai, String hanggiay) {
+	private String tenloai;
+	public loaibean() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public loaibean(String maloai, String tenloai) {
 		super();
 		this.maloai = maloai;
-		this.hanggiay = hanggiay;
+		this.tenloai = tenloai;
 	}
-
-
 	public String getMaloai() {
 		return maloai;
 	}
 	public void setMaloai(String maloai) {
 		this.maloai = maloai;
 	}
-
-
-	public String getHanggiay() {
-		return hanggiay;
+	public String getTenloai() {
+		return tenloai;
 	}
-	public void setHanggiay(String hanggiay) {
-		this.hanggiay = hanggiay;
+	public void setTenloai(String tenloai) {
+		this.tenloai = tenloai;
 	}
 	
 }
